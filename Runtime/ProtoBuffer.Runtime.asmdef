@@ -1,0 +1,19 @@
+{
+    "name": "ProtoBuffer.Runtime",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.google.protobuf",
+            "expression": "",
+            "define": "ENABLE_PROTOBUF"
+        }
+    ],
+    "noEngineReferences": false
+}
