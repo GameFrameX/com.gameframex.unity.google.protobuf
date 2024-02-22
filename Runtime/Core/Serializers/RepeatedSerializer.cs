@@ -299,19 +299,15 @@ namespace ProtoBuf.Serializers
         {
             try
             {
-                switch (values)
-                {
-                    case IReadOnlyCollection<TItem> roc:
-                        return roc.Count; // test this first - most common things implement it
-                    case ICollection<TItem> collection:
-                        return collection.Count;
-                    case ICollection untyped:
-                        return untyped.Count;
-                    case null:
-                        return 0;
-                    default:
-                        return -1;
-                }
+                if (values is IReadOnlyCollection<TItem> roc)
+                    return roc.Count; // test this first - most common things implement it
+                if (values is ICollection<TItem> collection)
+                    return collection.Count;
+                if (values is ICollection untyped)
+                    return untyped.Count;
+                if (values == null)
+                    return 0;
+                return -1;
             }
             catch
             {
@@ -690,7 +686,7 @@ namespace ProtoBuf.Serializers
             return values;
         }
 
-        protected override int TryGetCount(TCollection values) => values is null ? 0 : values.Count;
+        protected override int TryGetCount(TCollection values) => values == null ? 0 : values.Count;
 
         protected override TCollection AddRange(TCollection values, ref ArraySegment<T> newValues, ISerializationContext context)
         {

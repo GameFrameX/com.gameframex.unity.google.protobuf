@@ -21,8 +21,8 @@ namespace ProtoBuf.Internal.Serializers
 
     internal sealed class ExternalSerializer<TProvider, T>
         : IRuntimeProtoSerializerNode, IExternalSerializer,
-        ICompiledSerializer, // just to prevent it constantly being checked for compilation
-        IProtoTypeSerializer // needed to make some internal bits happy
+            ICompiledSerializer, // just to prevent it constantly being checked for compilation
+            IProtoTypeSerializer // needed to make some internal bits happy
         where TProvider : class
     {
         object IExternalSerializer.Service => Serializer;
@@ -34,7 +34,9 @@ namespace ProtoBuf.Internal.Serializers
 
         bool IRuntimeProtoSerializerNode.ReturnsValue => true;
 
-        public ExternalSerializer() { }
+        public ExternalSerializer()
+        {
+        }
 
         void IRuntimeProtoSerializerNode.Write(ref ProtoWriter.State state, object value)
             => Serializer.Write(ref state, TypeHelper<T>.FromObject(value));
@@ -51,10 +53,17 @@ namespace ProtoBuf.Internal.Serializers
         bool IProtoTypeSerializer.CanCreateInstance() => Serializer is IFactory<T>;
 
         object IProtoTypeSerializer.CreateInstance(ISerializationContext context)
-            => Serializer is not IFactory<T> factory ? null : (object)factory.Create(context);
+        {
+            IFactory<T> factory = Serializer as IFactory<T>;
+            if (factory == null)
+                return null;
+            else
+                return (object)factory.Create(context);
+        }
 
         void IProtoTypeSerializer.Callback(object value, TypeModel.CallbackType callbackType, ISerializationContext context)
-        { }
+        {
+        }
 
         bool IProtoTypeSerializer.ShouldEmitCreateInstance => false;
         bool IProtoTypeSerializer.HasCallbacks(TypeModel.CallbackType callbackType) => false;
@@ -64,11 +73,13 @@ namespace ProtoBuf.Internal.Serializers
 
         void IProtoTypeSerializer.EmitCreateInstance(CompilerContext ctx, bool callNoteObject)
             => ThrowHelper.ThrowNotSupportedException();
+
         void IProtoTypeSerializer.EmitCallback(CompilerContext ctx, Local valueFrom, TypeModel.CallbackType callbackType)
             => ThrowHelper.ThrowNotSupportedException();
 
         void IProtoTypeSerializer.EmitReadRoot(CompilerContext ctx, Local entity)
             => ThrowHelper.ThrowNotSupportedException();
+
         void IProtoTypeSerializer.EmitWriteRoot(CompilerContext ctx, Local entity)
             => ThrowHelper.ThrowNotSupportedException();
 

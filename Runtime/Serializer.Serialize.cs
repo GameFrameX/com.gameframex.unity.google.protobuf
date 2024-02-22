@@ -10,7 +10,6 @@ namespace ProtoBuf
 {
     partial class Serializer
     {
-
         /// <summary>
         /// Writes a protocol-buffer representation of the given instance to the supplied stream.
         /// </summary>
@@ -68,6 +67,7 @@ namespace ProtoBuf
         {
             Serialize<T>(info, new StreamingContext(StreamingContextStates.Persistence), instance);
         }
+
         /// <summary>
         /// Writes a protocol-buffer representation of the given instance to the supplied SerializationInfo.
         /// </summary>
@@ -96,8 +96,8 @@ namespace ProtoBuf
         /// <param name="writer">The destination XmlWriter to write to.</param>
         public static void Serialize<[DynamicallyAccessedMembers(DynamicAccess.ContractType)] T>(System.Xml.XmlWriter writer, T instance) where T : System.Xml.Serialization.IXmlSerializable
         {
-            if (writer is null) throw new ArgumentNullException(nameof(writer));
-            if (instance is null) throw new ArgumentNullException(nameof(instance));
+            if (writer == null) throw new ArgumentNullException(nameof(writer));
+            if (instance == null) throw new ArgumentNullException(nameof(instance));
             using (MemoryStream ms = new MemoryStream())
             {
                 Serializer.Serialize<T>(ms, instance);

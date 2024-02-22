@@ -881,17 +881,15 @@ namespace ProtoBuf.Compiler
                 }
                 if (!isPublic)
                 {
-                    switch (member)
+                    if (member is FieldBuilder || member is TypeBuilder || member is PropertyBuilder)
                     {
-                        case FieldBuilder:
-                        case TypeBuilder:
-                        case PropertyBuilder:
-                            // we're building them; 'tis fine
-                            break;
-                        default:
-                            throw memberType == MemberTypes.TypeInfo ? new InvalidOperationException("Non-public type cannot be used with full dll compilation: " + ((Type)member).NormalizeName()) :
-                                memberType == MemberTypes.NestedType ? new InvalidOperationException("Non-public type cannot be used with full dll compilation: " + ((Type)member).NormalizeName()) :
-                                new InvalidOperationException("Non-public member cannot be used with full dll compilation: " + member.DeclaringType.NormalizeName() + "." + member.Name);
+                        // we're building them; 'tis fine
+                    }
+                    else
+                    {
+                        throw memberType == MemberTypes.TypeInfo ? new InvalidOperationException("Non-public type cannot be used with full dll compilation: " + ((Type)member).NormalizeName()) :
+                            memberType == MemberTypes.NestedType ? new InvalidOperationException("Non-public type cannot be used with full dll compilation: " + ((Type)member).NormalizeName()) :
+                            new InvalidOperationException("Non-public member cannot be used with full dll compilation: " + member.DeclaringType.NormalizeName() + "." + member.Name);
                     }
                 }
             }

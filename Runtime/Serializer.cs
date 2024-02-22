@@ -107,8 +107,8 @@ namespace ProtoBuf
         /// <param name="reader">The XmlReader containing the data to apply to the instance (cannot be null).</param>
         public static void Merge<[DynamicallyAccessedMembers(DynamicAccess.ContractType)] T>(System.Xml.XmlReader reader, T instance) where T : System.Xml.Serialization.IXmlSerializable
         {
-            if (reader is null) throw new ArgumentNullException(nameof(reader));
-            if (instance is null) throw new ArgumentNullException(nameof(instance));
+            if (reader == null) throw new ArgumentNullException(nameof(reader));
+            if (instance == null) throw new ArgumentNullException(nameof(instance));
             const int LEN = 4096;
             byte[] buffer = new byte[LEN];
             int read;

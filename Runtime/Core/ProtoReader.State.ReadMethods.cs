@@ -1244,7 +1244,7 @@ namespace ProtoBuf
                     }
                 }
 
-                if (TypeHelper<T>.IsReferenceType && !found && value is null)
+                if (TypeHelper<T>.IsReferenceType && !found && value == null)
                 {
                     value = state.CreateInstance<T>(serializer);
                 }
