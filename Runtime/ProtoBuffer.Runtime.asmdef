@@ -15,5 +15,5 @@
             "define": "ENABLE_PROTOBUF"
         }
     ],
-    "noEngineReferences": false
+    "noEngineReferences": true
 }

@@ -81,9 +81,11 @@ namespace ProtoBuf
             if (info is null) throw new ArgumentNullException(nameof(info));
             if (instance is null) throw new ArgumentNullException(nameof(instance));
             if (instance.GetType() != typeof(T)) throw new ArgumentException("Incorrect type", nameof(instance));
-            using MemoryStream ms = new MemoryStream();
-            RuntimeTypeModel.Default.Serialize<T>(ms, instance, context.Context);
-            info.AddValue(ProtoBinaryField, ms.ToArray());
+            using (MemoryStream ms = new MemoryStream())
+            {
+                RuntimeTypeModel.Default.Serialize<T>(ms, instance, context.Context);
+                info.AddValue(ProtoBinaryField, ms.ToArray());
+            }
         }
 
         /// <summary>
@@ -96,10 +98,12 @@ namespace ProtoBuf
         {
             if (writer is null) throw new ArgumentNullException(nameof(writer));
             if (instance is null) throw new ArgumentNullException(nameof(instance));
-            using MemoryStream ms = new MemoryStream();
-            Serializer.Serialize<T>(ms, instance);
-            Helpers.GetBuffer(ms, out var segment);
-            writer.WriteBase64(segment.Array, segment.Offset, segment.Count);
+            using (MemoryStream ms = new MemoryStream())
+            {
+                Serializer.Serialize<T>(ms, instance);
+                Helpers.GetBuffer(ms, out var segment);
+                writer.WriteBase64(segment.Array, segment.Offset, segment.Count);
+            }
         }
 
         /// <summary>

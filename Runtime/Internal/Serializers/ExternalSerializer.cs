@@ -77,23 +77,24 @@ namespace ProtoBuf.Internal.Serializers
             // SerializerCache.Get<TProvider, T>().Write(ref state, value);
             // if TProvider is public, or
             // state.GetSerializer<T>().Write(ref state, value);
-            using var loc = ctx.GetLocalWithValue(typeof(T), valueFrom);
+            using (var loc = ctx.GetLocalWithValue(typeof(T), valueFrom))
+            {
+                // get the serializer
+                if (ctx.NonPublic || RuntimeTypeModel.IsFullyPublic(typeof(TProvider)))
+                {
+                    ctx.EmitCall(typeof(SerializerCache).GetMethod(nameof(SerializerCache.Get)).MakeGenericMethod(typeof(TProvider), typeof(T)));
+                }
+                else
+                {
+                    ctx.LoadState();
+                    ctx.EmitCall(typeof(ProtoWriter.State).GetMethod(nameof(ProtoWriter.State.GetSerializer)).MakeGenericMethod(typeof(T)));
+                }
 
-            // get the serializer
-            if (ctx.NonPublic || RuntimeTypeModel.IsFullyPublic(typeof(TProvider)))
-            {
-                ctx.EmitCall(typeof(SerializerCache).GetMethod(nameof(SerializerCache.Get)).MakeGenericMethod(typeof(TProvider), typeof(T)));
-            }
-            else
-            {
+                // invoke Write
                 ctx.LoadState();
-                ctx.EmitCall(typeof(ProtoWriter.State).GetMethod(nameof(ProtoWriter.State.GetSerializer)).MakeGenericMethod(typeof(T)));
+                ctx.LoadValue(loc); // value
+                ctx.EmitCall(typeof(ISerializer<T>).GetMethod(nameof(ISerializer<T>.Write)));
             }
-
-            // invoke Write
-            ctx.LoadState();
-            ctx.LoadValue(loc); // value
-            ctx.EmitCall(typeof(ISerializer<T>).GetMethod(nameof(ISerializer<T>.Write)));
         }
 
         void IRuntimeProtoSerializerNode.EmitRead(CompilerContext ctx, Local entity)
@@ -101,26 +102,27 @@ namespace ProtoBuf.Internal.Serializers
             // entity = SerializerCache.Get<TProvider, T>().Read(ref state, value);
             // if TProvider is public, or
             // entity = state.GetSerializer<T>().Read(ref state, value);
-            using var loc = ctx.GetLocalWithValue(typeof(T), entity);
+            using (var loc = ctx.GetLocalWithValue(typeof(T), entity))
+            {
+                // get the serializer
+                if (ctx.NonPublic || RuntimeTypeModel.IsFullyPublic(typeof(TProvider)))
+                {
+                    ctx.EmitCall(typeof(SerializerCache).GetMethod(nameof(SerializerCache.Get)).MakeGenericMethod(typeof(TProvider), typeof(T)));
+                }
+                else
+                {
+                    ctx.LoadState();
+                    ctx.EmitCall(typeof(ProtoReader.State).GetMethod(nameof(ProtoReader.State.GetSerializer)).MakeGenericMethod(typeof(T)));
+                }
 
-            // get the serializer
-            if (ctx.NonPublic || RuntimeTypeModel.IsFullyPublic(typeof(TProvider)))
-            {
-                ctx.EmitCall(typeof(SerializerCache).GetMethod(nameof(SerializerCache.Get)).MakeGenericMethod(typeof(TProvider), typeof(T)));
-            }
-            else
-            {
+                // invoke Read
                 ctx.LoadState();
-                ctx.EmitCall(typeof(ProtoReader.State).GetMethod(nameof(ProtoReader.State.GetSerializer)).MakeGenericMethod(typeof(T)));
+                ctx.LoadValue(loc);
+                ctx.EmitCall(typeof(ISerializer<T>).GetMethod(nameof(ISerializer<T>.Read)));
+
+                // store back
+                ctx.StoreValue(entity);
             }
-
-            // invoke Read
-            ctx.LoadState();
-            ctx.LoadValue(loc);
-            ctx.EmitCall(typeof(ISerializer<T>).GetMethod(nameof(ISerializer<T>.Read)));
-
-            // store back
-            ctx.StoreValue(entity);
         }
     }
 }
