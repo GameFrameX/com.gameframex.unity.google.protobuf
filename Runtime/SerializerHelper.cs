@@ -81,8 +81,33 @@ namespace ProtoBuf
         {
             using (var memoryStream = new MemoryStream(data))
             {
-                return (T)RuntimeTypeModel.Default.Deserialize(memoryStream, null, typeof(T));
+                return (T)RuntimeTypeModel.Default.Deserialize(typeof(T), memoryStream);
             }
+        }
+
+        /// <summary>
+        /// 反序列化数据对象
+        /// </summary>
+        /// <param name="data">数据</param>
+        /// <param name="type">类型</param>
+        /// <returns></returns>
+        public static object Deserialize(byte[] data, Type type)
+        {
+            using (var memoryStream = new MemoryStream(data))
+            {
+                return RuntimeTypeModel.Default.Deserialize(type, memoryStream);
+            }
+        }
+
+        /// <summary>
+        /// 反序列化数据对象
+        /// </summary>
+        /// <param name="data">数据</param>
+        /// <param name="type">类型</param>
+        /// <returns></returns>
+        public static object Deserialize(ref ReadOnlySequence<byte> data, Type type)
+        {
+            return RuntimeTypeModel.Default.Deserialize(type, data);
         }
 
         /// <summary>
@@ -96,6 +121,51 @@ namespace ProtoBuf
             return RuntimeTypeModel.Default.Deserialize<T>(data);
         }
 
+        
+        /// <summary>
+        /// 反序列化数据对象
+        /// </summary>
+        /// <param name="data">数据</param>
+        /// <param name="type">类型</param>
+        /// <returns></returns>
+        public static object Deserialize(ref ReadOnlyMemory<byte> data, Type type)
+        {
+            return RuntimeTypeModel.Default.Deserialize(type, data);
+        }
+
+        /// <summary>
+        /// 反序列化数据对象
+        /// </summary>
+        /// <param name="data">数据</param>
+        /// <typeparam name="T">类型</typeparam>
+        /// <returns></returns>
+        public static T Deserialize<T>(ref ReadOnlyMemory<byte> data)
+        {
+            return RuntimeTypeModel.Default.Deserialize<T>(data);
+        }
+        
+        /// <summary>
+        /// 反序列化数据对象
+        /// </summary>
+        /// <param name="data">数据</param>
+        /// <param name="type">类型</param>
+        /// <returns></returns>
+        public static object Deserialize(ref ReadOnlySpan<byte> data, Type type)
+        {
+            return RuntimeTypeModel.Default.Deserialize(type, data);
+        }
+
+        /// <summary>
+        /// 反序列化数据对象
+        /// </summary>
+        /// <param name="data">数据</param>
+        /// <typeparam name="T">类型</typeparam>
+        /// <returns></returns>
+        public static T Deserialize<T>(ref ReadOnlySpan<byte> data)
+        {
+            return RuntimeTypeModel.Default.Deserialize<T>(data);
+        }
+        
         /// <summary>
         /// 反序列化数据对象
         /// </summary>
