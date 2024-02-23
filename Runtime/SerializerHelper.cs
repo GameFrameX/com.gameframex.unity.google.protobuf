@@ -13,17 +13,6 @@ namespace ProtoBuf
         /// <summary>
         /// 序列化对象
         /// </summary>
-        /// <param name="bufferWriter"></param>
-        /// <param name="value"></param>
-        /// <typeparam name="T"></typeparam>
-        public static void Serialize<T>(ref IBufferWriter<byte> bufferWriter, T value)
-        {
-            RuntimeTypeModel.Default.Serialize(bufferWriter, value);
-        }
-
-        /// <summary>
-        /// 序列化对象
-        /// </summary>
         /// <param name="value"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
@@ -31,7 +20,7 @@ namespace ProtoBuf
         {
             using (var memoryStream = new MemoryStream())
             {
-                RuntimeTypeModel.Default.Serialize(memoryStream, value);
+                Serializer.Serialize(memoryStream, value);
                 return memoryStream.ToArray();
             }
         }
@@ -48,18 +37,9 @@ namespace ProtoBuf
         {
             using (var memoryStream = new MemoryStream())
             {
-                RuntimeTypeModel.Default.SerializeWithLengthPrefix(memoryStream, value, typeof(T), prefixStyle, fieldNumber);
+                Serializer.SerializeWithLengthPrefix(memoryStream, value, prefixStyle, fieldNumber);
                 return memoryStream.ToArray();
             }
-        }
-
-        /// <summary>
-        /// 注册类型
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        public static void Register<T>()
-        {
-            RuntimeTypeModel.Default.Add<T>();
         }
 
         /// <summary>
@@ -68,7 +48,7 @@ namespace ProtoBuf
         /// <param name="type"></param>
         public static void Register(Type type)
         {
-            RuntimeTypeModel.Default.Add(type);
+            RuntimeTypeModel.Default.Add(type, false);
         }
 
         /// <summary>
@@ -81,7 +61,7 @@ namespace ProtoBuf
         {
             using (var memoryStream = new MemoryStream(data))
             {
-                return (T)RuntimeTypeModel.Default.Deserialize(typeof(T), memoryStream);
+                return (T)Serializer.Deserialize(typeof(T), memoryStream);
             }
         }
 
@@ -95,91 +75,91 @@ namespace ProtoBuf
         {
             using (var memoryStream = new MemoryStream(data))
             {
-                return RuntimeTypeModel.Default.Deserialize(type, memoryStream);
+                return Serializer.Deserialize(type, memoryStream);
             }
         }
+        //
+        // /// <summary>
+        // /// 反序列化数据对象
+        // /// </summary>
+        // /// <param name="data">数据</param>
+        // /// <param name="type">类型</param>
+        // /// <returns></returns>
+        // public static object Deserialize(ref ReadOnlySequence<byte> data, Type type)
+        // {
+        //     
+        //     return Serializer.Deserialize(type, data);
+        // }
+        //
+        // /// <summary>
+        // /// 反序列化数据对象
+        // /// </summary>
+        // /// <param name="data">数据</param>
+        // /// <typeparam name="T">类型</typeparam>
+        // /// <returns></returns>
+        // public static T Deserialize<T>(ref ReadOnlySequence<byte> data)
+        // {
+        //     return RuntimeTypeModel.Default.Deserialize<T>(data);
+        // }
+        //
+        //
+        // /// <summary>
+        // /// 反序列化数据对象
+        // /// </summary>
+        // /// <param name="data">数据</param>
+        // /// <param name="type">类型</param>
+        // /// <returns></returns>
+        // public static object Deserialize(ref ReadOnlyMemory<byte> data, Type type)
+        // {
+        //     return RuntimeTypeModel.Default.Deserialize(type, data);
+        // }
+        //
+        // /// <summary>
+        // /// 反序列化数据对象
+        // /// </summary>
+        // /// <param name="data">数据</param>
+        // /// <typeparam name="T">类型</typeparam>
+        // /// <returns></returns>
+        // public static T Deserialize<T>(ref ReadOnlyMemory<byte> data)
+        // {
+        //     return RuntimeTypeModel.Default.Deserialize<T>(data);
+        // }
+        //
+        // /// <summary>
+        // /// 反序列化数据对象
+        // /// </summary>
+        // /// <param name="data">数据</param>
+        // /// <param name="type">类型</param>
+        // /// <returns></returns>
+        // public static object Deserialize(ref ReadOnlySpan<byte> data, Type type)
+        // {
+        //     return RuntimeTypeModel.Default.Deserialize(type, data);
+        // }
+        //
+        // /// <summary>
+        // /// 反序列化数据对象
+        // /// </summary>
+        // /// <param name="data">数据</param>
+        // /// <typeparam name="T">类型</typeparam>
+        // /// <returns></returns>
+        // public static T Deserialize<T>(ref ReadOnlySpan<byte> data)
+        // {
+        //     return RuntimeTypeModel.Default.Deserialize<T>(data);
+        // }
 
         /// <summary>
         /// 反序列化数据对象
         /// </summary>
         /// <param name="data">数据</param>
-        /// <param name="type">类型</param>
-        /// <returns></returns>
-        public static object Deserialize(ref ReadOnlySequence<byte> data, Type type)
-        {
-            return RuntimeTypeModel.Default.Deserialize(type, data);
-        }
-
-        /// <summary>
-        /// 反序列化数据对象
-        /// </summary>
-        /// <param name="data">数据</param>
-        /// <typeparam name="T">类型</typeparam>
-        /// <returns></returns>
-        public static T Deserialize<T>(ref ReadOnlySequence<byte> data)
-        {
-            return RuntimeTypeModel.Default.Deserialize<T>(data);
-        }
-
-        
-        /// <summary>
-        /// 反序列化数据对象
-        /// </summary>
-        /// <param name="data">数据</param>
-        /// <param name="type">类型</param>
-        /// <returns></returns>
-        public static object Deserialize(ref ReadOnlyMemory<byte> data, Type type)
-        {
-            return RuntimeTypeModel.Default.Deserialize(type, data);
-        }
-
-        /// <summary>
-        /// 反序列化数据对象
-        /// </summary>
-        /// <param name="data">数据</param>
-        /// <typeparam name="T">类型</typeparam>
-        /// <returns></returns>
-        public static T Deserialize<T>(ref ReadOnlyMemory<byte> data)
-        {
-            return RuntimeTypeModel.Default.Deserialize<T>(data);
-        }
-        
-        /// <summary>
-        /// 反序列化数据对象
-        /// </summary>
-        /// <param name="data">数据</param>
-        /// <param name="type">类型</param>
-        /// <returns></returns>
-        public static object Deserialize(ref ReadOnlySpan<byte> data, Type type)
-        {
-            return RuntimeTypeModel.Default.Deserialize(type, data);
-        }
-
-        /// <summary>
-        /// 反序列化数据对象
-        /// </summary>
-        /// <param name="data">数据</param>
-        /// <typeparam name="T">类型</typeparam>
-        /// <returns></returns>
-        public static T Deserialize<T>(ref ReadOnlySpan<byte> data)
-        {
-            return RuntimeTypeModel.Default.Deserialize<T>(data);
-        }
-        
-        /// <summary>
-        /// 反序列化数据对象
-        /// </summary>
-        /// <param name="data">数据</param>
-        /// <param name="instance">实例对象</param>
         /// <param name="prefixStyle"></param>
         /// <param name="fieldNumber"></param>
         /// <typeparam name="T">类型</typeparam>
         /// <returns></returns>
-        public static T DeserializeWithLengthPrefix<T>(byte[] data, T instance, PrefixStyle prefixStyle, int fieldNumber)
+        public static T DeserializeWithLengthPrefix<T>(byte[] data, PrefixStyle prefixStyle, int fieldNumber)
         {
             using (var memoryStream = new MemoryStream(data))
             {
-                return (T)RuntimeTypeModel.Default.DeserializeWithLengthPrefix(memoryStream, instance, typeof(T), prefixStyle, fieldNumber);
+                return Serializer.DeserializeWithLengthPrefix<T>(memoryStream, prefixStyle, fieldNumber);
             }
         }
     }

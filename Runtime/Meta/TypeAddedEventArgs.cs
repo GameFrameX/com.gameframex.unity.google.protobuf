@@ -28,6 +28,6 @@ namespace ProtoBuf.Meta
         /// <summary>
         /// The model that is being changed
         /// </summary>
-        public RuntimeTypeModel Model => MetaType.Model;
+        public RuntimeTypeModel Model => MetaType.Model as RuntimeTypeModel;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if FEAT_COMPILER
+using System;
 using System.Reflection.Emit;
 
 namespace ProtoBuf.Compiler
@@ -29,7 +30,7 @@ namespace ProtoBuf.Compiler
 
         public Local AsCopy()
         {
-            if (ctx is null) return this; // can re-use if context-free
+            if (ctx == null) return this; // can re-use if context-free
             return new Local(value, this.type);
         }
         
@@ -54,3 +55,4 @@ namespace ProtoBuf.Compiler
         }
     }
 }
+#endif

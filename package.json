@@ -1,7 +1,7 @@
 {
   "name": "com.google.protobuf",
   "displayName": "Google Protocol Buffers",
-  "version": "3.2.20",
+  "version": "1.0.0",
   "unity": "2017.1",
   "description": "Google Protocol Buffers",
   "author": {
