@@ -9,9 +9,9 @@ DataContractSerializer, etc). It should work for most .NET languages that write 
 
 1. 直接在 `manifest.json` 文件中添加以下内容
    ```json
-      {"com.gameframex.unity.google.protobuf": "https://github.com/AlianBlank/com.gameframex.unity.google.protobuf.git"}
+      {"com.gameframex.unity.google.protobuf": "https://github.com/gameframex/com.gameframex.unity.google.protobuf.git"}
     ```
-2. 在Unity 的`Packages Manager` 中使用`Git URL` 的方式添加库,地址为：https://github.com/AlianBlank/com.gameframex.unity.google.protobuf.git
+2. 在Unity 的`Packages Manager` 中使用`Git URL` 的方式添加库,地址为：https://github.com/gameframex/com.gameframex.unity.google.protobuf.git
 
 3. 直接下载仓库放置到Unity 项目的`Packages` 目录下。会自动加载识别
 
