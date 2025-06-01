@@ -1,5 +1,9 @@
 # Changelog
 
+## [3.2.22](https://github.com/GameFrameX/com.gameframex.unity.google.protobuf/tree/3.2.22) (2025-06-01)
+
+[Full Changelog](https://github.com/GameFrameX/com.gameframex.unity.google.protobuf/compare/3.2.21...3.2.22)
+
 ## [3.2.21](https://github.com/GameFrameX/com.gameframex.unity.google.protobuf/tree/3.2.21) (2025-05-31)
 
 [Full Changelog](https://github.com/GameFrameX/com.gameframex.unity.google.protobuf/compare/3.2.20...3.2.21)
