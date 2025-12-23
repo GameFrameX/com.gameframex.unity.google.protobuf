@@ -1,3 +1,10 @@
+# [3.3.0](https://github.com/gameframex/com.gameframex.unity.google.protobuf/compare/3.2.22...3.3.0) (2025-12-23)
+
+
+### Features
+
+* **ci:** change ci ([2daaed8](https://github.com/gameframex/com.gameframex.unity.google.protobuf/commit/2daaed8aea816f8cc8991b12d79e489ad1db4833))
+
 # Changelog
 
 ## [3.2.22](https://github.com/GameFrameX/com.gameframex.unity.google.protobuf/tree/3.2.22) (2025-06-01)
