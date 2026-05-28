@@ -1,3 +1,10 @@
+## [3.3.1](https://github.com/gameframex/com.gameframex.unity.google.protobuf/compare/3.3.0...3.3.1) (2026-05-28)
+
+
+### Bug Fixes
+
+* **ci:** 统一 .github 工作流配置 ([0c81373](https://github.com/gameframex/com.gameframex.unity.google.protobuf/commit/0c8137312c5d6a8be44104bae64cec7a1432293f))
+
 # [3.3.0](https://github.com/gameframex/com.gameframex.unity.google.protobuf/compare/3.2.22...3.3.0) (2025-12-23)
 
 
