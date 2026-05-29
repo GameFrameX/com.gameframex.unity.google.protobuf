@@ -1,3 +1,10 @@
+# [3.4.0](https://github.com/gameframex/com.gameframex.unity.google.protobuf/compare/3.3.1...3.4.0) (2026-05-29)
+
+
+### Features
+
+* **serializer:** 新增 ProtobufMessageSerializer 实现 IMessageSerializer 接口 ([7ee1360](https://github.com/gameframex/com.gameframex.unity.google.protobuf/commit/7ee13603f7c1721122dcb0ce25322ec21d36f330))
+
 ## [3.3.1](https://github.com/gameframex/com.gameframex.unity.google.protobuf/compare/3.3.0...3.3.1) (2026-05-28)
 
 
