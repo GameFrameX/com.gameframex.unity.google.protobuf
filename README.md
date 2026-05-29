@@ -22,6 +22,8 @@ protobuf-net is a contract based serializer for .NET code that writes data in th
 
 This library primarily serves as a submodule of the `https://github.com/GameFrameX/GameFrameX` project.
 
+This package provides `ProtobufMessageSerializer`, an implementation of the `IMessageSerializer` interface from `com.gameframex.unity.network`. On Unity runtime load, it auto-registers as the global default serializer via `MessageSerializerRegistry.RegisterGlobal()`, requiring zero code changes for backward compatibility.
+
 ## Features
 
 - **Contract Based** - Uses .NET attributes for serialization contracts
@@ -29,8 +31,12 @@ This library primarily serves as a submodule of the `https://github.com/GameFram
 - **Cross Platform** - Works across all .NET platforms
 - **.NET Patterns** - Follows typical .NET serialization patterns
 - **Unity Package Support** - Added Unity Package Manager support
+- **IMessageSerializer Integration** - Implements `IMessageSerializer` for pluggable serialization in the network package
+- **Auto Registration** - Registers as global default serializer on load (zero-config backward compatibility)
 
 ## Installation
+
+> **Note:** This package depends on `com.gameframex.unity.network` (>= 2.5.1), which provides the `IMessageSerializer` interface. Unity Package Manager will resolve this dependency automatically.
 
 ### Via Git URL (Recommended)
 
@@ -62,6 +68,19 @@ Add the following to your project's `Packages/manifest.json`:
 ## Documentation
 
 For protobuf-net usage documentation, visit [protobuf-net/protobuf-net](https://github.com/protobuf-net/protobuf-net).
+
+### Manual Serializer Registration
+
+The `ProtobufMessageSerializer` auto-registers on load. If you need to replace it or register it manually:
+
+```csharp
+// Manually register (e.g. after resetting the global serializer)
+MessageSerializerRegistry.RegisterGlobal(new ProtobufMessageSerializer());
+
+// Use as a per-channel override
+var helper = new DefaultNetworkChannelHelper();
+helper.SetChannelSerializer(new ProtobufMessageSerializer()); // Must be called before Initialize()
+```
 
 ## Changelog
 
