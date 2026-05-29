@@ -22,6 +22,8 @@ protobuf-net は、.NET コード向けのコントラクトベースのシリ�
 
 このライブラリは主に `https://github.com/GameFrameX/GameFrameX` プロジェクトのサブモジュールとして使用されています。
 
+本パッケージは `ProtobufMessageSerializer` を提供しており、これは `com.gameframex.unity.network` の `IMessageSerializer` インターフェースの実装です。Unity ランタイムのロード時に `MessageSerializerRegistry.RegisterGlobal()` を介してグローバルデフォルトシリアライザとして自動登録されるため、後方互換性のためにコードの変更は不要です。
+
 ## 特徴
 
 - **コントラクトベース** - .NET 属性を使用したシリアライゼーションコントラクト
@@ -29,8 +31,12 @@ protobuf-net は、.NET コード向けのコントラクトベースのシリ�
 - **クロスプラットフォーム** - すべての .NET プラットフォームで動作
 - **.NET パターン** - 典型的な .NET シリアライゼーションパターンに従う
 - **Unity Package サポート** - Unity Package Manager サポートを追加
+- **IMessageSerializer 統合** - ネットワークパッケージのプラグイン可能なシリアライゼーションのための `IMessageSerializer` を実装
+- **自動登録** - ロード時にグローバルデフォルトシリアライザとして自動登録（ゼロ設定で後方互換）
 
 ## インストール
+
+> **注意:** 本パッケージは `com.gameframex.unity.network`（>= 2.5.1）に依存しており、このパッケージが `IMessageSerializer` インターフェースを提供しています。Unity Package Manager が自動的に依存関係を解決します。
 
 ### Git URL 経由（推奨）
 
@@ -62,6 +68,19 @@ protobuf-net は、.NET コード向けのコントラクトベースのシリ�
 ## ドキュメント
 
 protobuf-net の使用ドキュメントは [protobuf-net/protobuf-net](https://github.com/protobuf-net/protobuf-net) をご覧ください。
+
+### 手動シリアライザ登録
+
+`ProtobufMessageSerializer` はロード時に自動登録されます。置き換えや手動登録が必要な場合：
+
+```csharp
+// 手動登録（例：グローバルシリアライザをリセットした後）
+MessageSerializerRegistry.RegisterGlobal(new ProtobufMessageSerializer());
+
+// チャネル単位のオーバーライドとして使用
+var helper = new DefaultNetworkChannelHelper();
+helper.SetChannelSerializer(new ProtobufMessageSerializer()); // Initialize() の前に呼び出す必要があります
+```
 
 ## 変更履歴
 

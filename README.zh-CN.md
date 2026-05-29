@@ -22,6 +22,8 @@ protobuf-net 是一个基于契约的 .NET 代码序列化器，使用 Google �
 
 该库主要服务于 `https://github.com/GameFrameX/GameFrameX` 项目作为子库使用。
 
+本包提供了 `ProtobufMessageSerializer`，它是 `com.gameframex.unity.network` 中 `IMessageSerializer` 接口的实现。在 Unity 运行时加载时，会通过 `MessageSerializerRegistry.RegisterGlobal()` 自动注册为全局默认序列化器，无需修改任何代码即可实现向后兼容。
+
 ## 特性
 
 - **基于契约** - 使用 .NET 特性进行序列化契约定义
@@ -29,8 +31,12 @@ protobuf-net 是一个基于契约的 .NET 代码序列化器，使用 Google �
 - **跨平台** - 适用于所有 .NET 平台
 - **.NET 模式** - 遵循典型的 .NET 序列化模式
 - **Unity Package 支持** - 添加了 Unity Package Manager 支持
+- **IMessageSerializer 集成** - 实现了 `IMessageSerializer` 接口，支持网络包的可插拔序列化
+- **自动注册** - 加载时自动注册为全局默认序列化器（零配置向后兼容）
 
 ## 安装
+
+> **注意：** 本包依赖于 `com.gameframex.unity.network`（>= 2.5.1），该包提供了 `IMessageSerializer` 接口。Unity Package Manager 会自动解析此依赖。
 
 ### 通过 Git URL 安装（推荐）
 
@@ -62,6 +68,19 @@ protobuf-net 是一个基于契约的 .NET 代码序列化器，使用 Google �
 ## 使用文档
 
 protobuf-net 使用文档请访问 [protobuf-net/protobuf-net](https://github.com/protobuf-net/protobuf-net)。
+
+### 手动注册序列化器
+
+`ProtobufMessageSerializer` 会在加载时自动注册。如果需要替换或手动注册：
+
+```csharp
+// 手动注册（例如在重置全局序列化器之后）
+MessageSerializerRegistry.RegisterGlobal(new ProtobufMessageSerializer());
+
+// 作为单通道覆盖使用
+var helper = new DefaultNetworkChannelHelper();
+helper.SetChannelSerializer(new ProtobufMessageSerializer()); // 必须在 Initialize() 之前调用
+```
 
 ## 更新日志
 
