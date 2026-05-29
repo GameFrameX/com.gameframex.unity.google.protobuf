@@ -1,3 +1,10 @@
+## [3.4.1](https://github.com/gameframex/com.gameframex.unity.google.protobuf/compare/3.4.0...3.4.1) (2026-05-29)
+
+
+### Bug Fixes
+
+* **deps:** 升级 network 依赖至 2.6.0 以匹配 IMessageSerializer 接口 ([be25fa2](https://github.com/gameframex/com.gameframex.unity.google.protobuf/commit/be25fa292df50944410af0de0c2f4318ccedd722))
+
 # [3.4.0](https://github.com/gameframex/com.gameframex.unity.google.protobuf/compare/3.3.1...3.4.0) (2026-05-29)
 
 
