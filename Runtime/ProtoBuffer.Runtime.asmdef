@@ -1,6 +1,8 @@
 {
     "name": "ProtoBuffer.Runtime",
-    "references": [],
+    "references": [
+        "GameFrameX.Network.Runtime"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": true,
@@ -15,5 +17,5 @@
             "define": "ENABLE_PROTOBUF"
         }
     ],
-    "noEngineReferences": true
+    "noEngineReferences": false
 }
