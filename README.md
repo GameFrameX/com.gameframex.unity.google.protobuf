@@ -39,7 +39,9 @@ This package provides `ProtobufMessageSerializer`, an implementation of the `IMe
 - **IMessageSerializer Integration** - Implements `IMessageSerializer` for pluggable serialization in the network package
 - **Auto Registration** - Registers as global default serializer on load (zero-config backward compatibility)
 
-## Installation
+## Quick Start
+
+### Installation
 
 ### Installation
 
@@ -71,7 +73,7 @@ Then add the package to `dependencies`:
 }
 ```
 
-## Documentation
+## Documentation & Resources
 
 For protobuf-net usage documentation, visit [protobuf-net/protobuf-net](https://github.com/protobuf-net/protobuf-net).
 
@@ -92,6 +94,16 @@ helper.SetChannelSerializer(new ProtobufMessageSerializer()); // Must be called 
 
 See [CHANGELOG.md](CHANGELOG.md) for details.
 
+
+## Dependencies
+
+| Package | Description |
+|---------|-------------|
+| `com.gameframex.unity.network` | 2.6.0 |
+
+## Community & Support
+
+- QQ Group: 467608841 / 233840761
 ## License
 
 See [LICENSE.md](LICENSE.md) for license information.

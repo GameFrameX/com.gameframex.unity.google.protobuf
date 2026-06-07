@@ -39,7 +39,9 @@ protobuf-net은 .NET 코드를 위한 계약 기반 직렬화 도구로, Google�
 - **IMessageSerializer 통합** - 네트워크 패키지의 플러그형 직렬화를 위한 `IMessageSerializer` 구현
 - **자동 등록** - 로드 시 전역 기본 직렬화 도구로 자동 등록 (제로 설정 하위 호환)
 
-## 설치
+## 빠른 시작
+
+### 설치
 
 ### 설치
 
@@ -71,7 +73,7 @@ Then add the package to `dependencies`:
 }
 ```
 
-## 문서
+## 문서 및 자료
 
 protobuf-net 사용 문서는 [protobuf-net/protobuf-net](https://github.com/protobuf-net/protobuf-net)을 방문하세요.
 
@@ -92,6 +94,16 @@ helper.SetChannelSerializer(new ProtobufMessageSerializer()); // Initialize() �
 
 자세한 내용은 [CHANGELOG.md](CHANGELOG.md)를 참조하세요.
 
+
+## 의존성
+
+| 패키지 | 설명 |
+|--------|------|
+| `com.gameframex.unity.network` | 2.6.0 |
+
+## 커뮤니티 및 지원
+
+- QQ 그룹: 467608841 / 233840761
 ## 라이선스
 
 자세한 내용은 [LICENSE.md](LICENSE.md) 파일을 참조하세요.

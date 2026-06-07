@@ -39,7 +39,9 @@ protobuf-net 是一个基于契约的 .NET 代码序列化器，使用 Google �
 - **IMessageSerializer 集成** - 实现了 `IMessageSerializer` 接口，支持网络包的可插拔序列化
 - **自动注册** - 加载时自动注册为全局默认序列化器（零配置向后兼容）
 
-## 安装
+## 快速开始
+
+### 安装
 
 ### 安装
 
@@ -92,6 +94,20 @@ helper.SetChannelSerializer(new ProtobufMessageSerializer()); // 必须在 Initi
 
 详见 [CHANGELOG.md](CHANGELOG.md)。
 
+
+## 依赖
+
+| 包 | 说明 |
+|----|------|
+| `com.gameframex.unity.network` | 2.6.0 |
+
+## 文档与资源
+
+- [官方文档](https://gameframex.doc.alianblank.com)
+
+## 社区与支持
+
+- QQ群: 467608841 / 233840761
 ## 开源协议
 
 详见 [LICENSE.md](LICENSE.md) 文件。

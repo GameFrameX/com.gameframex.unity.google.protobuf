@@ -39,7 +39,9 @@ protobuf-net は、.NET コード向けのコントラクトベースのシリ�
 - **IMessageSerializer 統合** - ネットワークパッケージのプラグイン可能なシリアライゼーションのための `IMessageSerializer` を実装
 - **自動登録** - ロード時にグローバルデフォルトシリアライザとして自動登録（ゼロ設定で後方互換）
 
-## インストール
+## クイックスタート
+
+### インストール
 
 ### インストール
 
@@ -71,7 +73,7 @@ Then add the package to `dependencies`:
 }
 ```
 
-## ドキュメント
+## ドキュメントとリソース
 
 protobuf-net の使用ドキュメントは [protobuf-net/protobuf-net](https://github.com/protobuf-net/protobuf-net) をご覧ください。
 
@@ -92,6 +94,16 @@ helper.SetChannelSerializer(new ProtobufMessageSerializer()); // Initialize() �
 
 詳細は [CHANGELOG.md](CHANGELOG.md) をご覧ください。
 
+
+## 依存関係
+
+| パッケージ | 説明 |
+|----------|------|
+| `com.gameframex.unity.network` | 2.6.0 |
+
+## コミュニティとサポート
+
+- QQグループ: 467608841 / 233840761
 ## ライセンス
 
 詳しくは [LICENSE.md](LICENSE.md) をご参照ください。
