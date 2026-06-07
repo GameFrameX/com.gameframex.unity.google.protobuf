@@ -1,3 +1,11 @@
+## [3.4.2](https://github.com/gameframex/com.gameframex.unity.google.protobuf/compare/3.4.1...3.4.2) (2026-06-07)
+
+
+### Bug Fixes
+
+* 统一 LICENSE.md 为 Apache 2.0 (自有仓库) ([872d17d](https://github.com/gameframex/com.gameframex.unity.google.protobuf/commit/872d17d6578e428ad8c8dcf64c138c4803f5cfa8))
+* 补全包规范文件（LICENSE/CHANGELOG/URL 字段/unity 字段） ([6e223bb](https://github.com/gameframex/com.gameframex.unity.google.protobuf/commit/6e223bbe3e27e13e4bde75ca53e326d89406ba8e))
+
 ## [3.4.1](https://github.com/gameframex/com.gameframex.unity.google.protobuf/compare/3.4.0...3.4.1) (2026-05-29)
 
 
