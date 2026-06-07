@@ -71,7 +71,6 @@ Then add the package to `dependencies`:
 }
 ```
 
-
 ## Documentation
 
 For protobuf-net usage documentation, visit [protobuf-net/protobuf-net](https://github.com/protobuf-net/protobuf-net).
@@ -95,4 +94,4 @@ See [CHANGELOG.md](CHANGELOG.md) for details.
 
 ## License
 
-This project is licensed under the MIT License - see [LICENSE.md](LICENSE.md) for details.
+See [LICENSE.md](LICENSE.md) for license information.

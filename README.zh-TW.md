@@ -71,7 +71,6 @@ Then add the package to `dependencies`:
 }
 ```
 
-
 ## 使用文檔
 
 protobuf-net 使用文檔請造訪 [protobuf-net/protobuf-net](https://github.com/protobuf-net/protobuf-net)。
@@ -95,4 +94,4 @@ helper.SetChannelSerializer(new ProtobufMessageSerializer()); // 必須在 Initi
 
 ## 開源協議
 
-本專案基於 MIT 協議開源，詳見 [LICENSE.md](LICENSE.md)。
+詳見 [LICENSE.md](LICENSE.md) 檔案。
