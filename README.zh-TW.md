@@ -41,34 +41,36 @@ protobuf-net 是一個基於契約的 .NET 程式碼序列化器，使用 Google
 
 ## 安裝
 
-> **注意：** 本套件依賴於 `com.gameframex.unity.network`（>= 2.5.1），該套件提供了 `IMessageSerializer` 介面。Unity Package Manager 會自動解析此依賴。
+### 安裝
 
-### 透過 Git URL 安裝（推薦）
+編輯 Unity 專案的 `Packages/manifest.json`，添加 `scopedRegistries` 部分：
 
-1. 在 Unity 編輯器中開啟 Package Manager
-2. 點擊 "+" 按鈕選擇 "Add package from git URL"
-3. 輸入以下 URL：
-   ```
-   https://github.com/GameFrameX/com.gameframex.unity.google.protobuf.git
-   ```
+```json
+{
+  "scopedRegistries": [
+    {
+      "name": "GameFrameX",
+      "url": "https://gameframex.upm.alianblank.uk",
+      "scopes": [
+        "com.gameframex"
+      ]
+    }
+  ]
+}
+```
 
-### 透過 manifest.json 安裝
+`scopes` 控制哪些套件透過此註冊表解析。只有以 `com.gameframex` 開頭的套件才會從這個註冊表取得。
 
-在專案的 `Packages/manifest.json` 檔案中新增：
+Then add the package to `dependencies`:
 
 ```json
 {
   "dependencies": {
-    "com.gameframex.unity.google.protobuf": "https://github.com/GameFrameX/com.gameframex.unity.google.protobuf.git"
+    "com.gameframex.unity.google.protobuf": "3.4.1"
   }
 }
 ```
 
-### 手動安裝
-
-1. 下載最新版本發佈包
-2. 解壓縮到專案的 `Packages` 目錄下
-3. Unity 會自動辨識並載入包
 
 ## 使用文檔
 

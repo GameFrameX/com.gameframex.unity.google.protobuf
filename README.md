@@ -41,34 +41,36 @@ This package provides `ProtobufMessageSerializer`, an implementation of the `IMe
 
 ## Installation
 
-> **Note:** This package depends on `com.gameframex.unity.network` (>= 2.5.1), which provides the `IMessageSerializer` interface. Unity Package Manager will resolve this dependency automatically.
+### Installation
 
-### Via Git URL (Recommended)
+Edit your Unity project's `Packages/manifest.json` and add the `scopedRegistries` section:
 
-1. Open Package Manager in Unity Editor
-2. Click the "+" button and select "Add package from git URL"
-3. Enter the following URL:
-   ```
-   https://github.com/GameFrameX/com.gameframex.unity.google.protobuf.git
-   ```
+```json
+{
+  "scopedRegistries": [
+    {
+      "name": "GameFrameX",
+      "url": "https://gameframex.upm.alianblank.uk",
+      "scopes": [
+        "com.gameframex"
+      ]
+    }
+  ]
+}
+```
 
-### Via manifest.json
+`scopes` controls which packages are resolved through this registry. Only packages whose names start with `com.gameframex` will be fetched from it.
 
-Add the following to your project's `Packages/manifest.json`:
+Then add the package to `dependencies`:
 
 ```json
 {
   "dependencies": {
-    "com.gameframex.unity.google.protobuf": "https://github.com/GameFrameX/com.gameframex.unity.google.protobuf.git"
+    "com.gameframex.unity.google.protobuf": "3.4.1"
   }
 }
 ```
 
-### Manual Installation
-
-1. Download the latest release package
-2. Extract it to your project's `Packages` directory
-3. Unity will automatically recognize and load the package
 
 ## Documentation
 

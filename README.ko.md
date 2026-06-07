@@ -41,34 +41,36 @@ protobuf-net은 .NET 코드를 위한 계약 기반 직렬화 도구로, Google�
 
 ## 설치
 
-> **참고:** 본 패키지는 `com.gameframex.unity.network`(>= 2.5.1)에 종속되며, 해당 패키지가 `IMessageSerializer` 인터페이스를 제공합니다. Unity Package Manager가 자동으로 종속성을 해결합니다.
+### 설치
 
-### Git URL을 통해 설치 (권장)
+Unity 프로젝트의 `Packages/manifest.json`을 편집하여 `scopedRegistries` 섹션을 추가하세요:
 
-1. Unity 에디터에서 Package Manager 열기
-2. "+" 버튼을 클릭하고 "Add package from git URL" 선택
-3. 다음 URL 입력:
-   ```
-   https://github.com/GameFrameX/com.gameframex.unity.google.protobuf.git
-   ```
+```json
+{
+  "scopedRegistries": [
+    {
+      "name": "GameFrameX",
+      "url": "https://gameframex.upm.alianblank.uk",
+      "scopes": [
+        "com.gameframex"
+      ]
+    }
+  ]
+}
+```
 
-### manifest.json을 통해 설치
+`scopes`는 이 레지스트리를 통해 어떤 패키지를 해석할지 제어합니다. `com.gameframex`로 시작하는 패키지만 이 레지스트리에서 가져옵니다.
 
-프로젝트의 `Packages/manifest.json`에 다음을 추가:
+Then add the package to `dependencies`:
 
 ```json
 {
   "dependencies": {
-    "com.gameframex.unity.google.protobuf": "https://github.com/GameFrameX/com.gameframex.unity.google.protobuf.git"
+    "com.gameframex.unity.google.protobuf": "3.4.1"
   }
 }
 ```
 
-### 수동 설치
-
-1. 최신 릴리스 패키지 다운로드
-2. 프로젝트의 `Packages` 디렉토리에 압축 해제
-3. Unity가 자동으로 패키지를 인식하고 로드합니다
 
 ## 문서
 

@@ -41,34 +41,36 @@ protobuf-net は、.NET コード向けのコントラクトベースのシリ�
 
 ## インストール
 
-> **注意:** 本パッケージは `com.gameframex.unity.network`（>= 2.5.1）に依存しており、このパッケージが `IMessageSerializer` インターフェースを提供しています。Unity Package Manager が自動的に依存関係を解決します。
+### インストール
 
-### Git URL 経由（推奨）
+Unity プロジェクトの `Packages/manifest.json` を編集し、`scopedRegistries` セクションを追加してください：
 
-1. Unity エディタで Package Manager を開く
-2. "+" ボタンをクリックし "Add package from git URL" を選択
-3. 以下の URL を入力：
-   ```
-   https://github.com/GameFrameX/com.gameframex.unity.google.protobuf.git
-   ```
+```json
+{
+  "scopedRegistries": [
+    {
+      "name": "GameFrameX",
+      "url": "https://gameframex.upm.alianblank.uk",
+      "scopes": [
+        "com.gameframex"
+      ]
+    }
+  ]
+}
+```
 
-### manifest.json 経由
+`scopes` は、どのパッケージをこのレジストリから解決するかを制御します。`com.gameframex` で始まるパッケージのみがこのレジストリから取得されます。
 
-プロジェクトの `Packages/manifest.json` に以下を追加：
+Then add the package to `dependencies`:
 
 ```json
 {
   "dependencies": {
-    "com.gameframex.unity.google.protobuf": "https://github.com/GameFrameX/com.gameframex.unity.google.protobuf.git"
+    "com.gameframex.unity.google.protobuf": "3.4.1"
   }
 }
 ```
 
-### 手動インストール
-
-1. 最新のリリースパッケージをダウンロード
-2. プロジェクトの `Packages` ディレクトリに展開
-3. Unity が自動的にパッケージを認識して読み込みます
 
 ## ドキュメント
 
