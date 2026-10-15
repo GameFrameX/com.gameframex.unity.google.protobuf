@@ -1,3 +1,10 @@
+# [3.5.0](https://github.com/gameframex/com.gameframex.unity.google.protobuf/compare/3.4.2...3.5.0) (2026-10-15)
+
+
+### Features
+
+* **protobuf:** 移除 MessageHttpObject 的隐式契约注册 ([345c2e7](https://github.com/gameframex/com.gameframex.unity.google.protobuf/commit/345c2e75a9a53410715ddbab7d9b91488da8c21c))
+
 ## [3.4.2](https://github.com/gameframex/com.gameframex.unity.google.protobuf/compare/3.4.1...3.4.2) (2026-06-07)
 
 
