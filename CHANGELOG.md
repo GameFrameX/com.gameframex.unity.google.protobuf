@@ -1,3 +1,10 @@
+## [3.5.1](https://github.com/gameframex/com.gameframex.unity.google.protobuf/compare/3.5.0...3.5.1) (2026-11-10)
+
+
+### Bug Fixes
+
+* **google.protobuf:** 添加完整 link.xml 防代码裁剪保护 ([4417d11](https://github.com/gameframex/com.gameframex.unity.google.protobuf/commit/4417d11069444a8a2fa2d829ece5bea52ab20042))
+
 # [3.5.0](https://github.com/gameframex/com.gameframex.unity.google.protobuf/compare/3.4.2...3.5.0) (2026-10-15)
 
 
